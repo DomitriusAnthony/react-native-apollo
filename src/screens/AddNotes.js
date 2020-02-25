@@ -1,20 +1,25 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Text, IconButton, TextInput, FAB } from 'react-native-paper';
+import { IconButton, TextInput, FAB } from 'react-native-paper';
 
 import Header from '../components/Header'
 
-export default function AddNotes({ navigation }) {
-  const [noteTitle, setNoteTitle] = React.useState('');
-  const [noteValue, setNoteValue] = React.useState('');
+export default function AddNote({ navigation }) {
+  const [noteTitle, setNoteTitle] = React.useState('')
+  const [noteValue, setNoteValue] = React.useState('')
 
   function onSaveNote() {
-    navigation.state.params.addNote({ noteTitle, noteValue });
-    navigation.goBack
+    navigation.state.params.addNote({
+      variables: {
+        title: noteTitle,
+        body: noteValue
+      }
+    })
+    navigation.goBack()
   }
   return (
     <>
-      <Header titleText="Add a new note" />
+      <Header titleText='Add a new note' />
       <IconButton
         icon='close'
         size={25}
@@ -22,35 +27,32 @@ export default function AddNotes({ navigation }) {
         onPress={() => navigation.goBack()}
         style={styles.iconButton}
       />
-      <View styles={styles.container}>
+      <View style={styles.container}>
         <TextInput
-          label="Add title here"
+          label='Add Title Here'
           value={noteTitle}
-          mode="outlined"
+          mode='outlined'
           onChangeText={setNoteTitle}
           style={styles.title}
         />
         <TextInput
-          label="Add Note here"
+          label='Add Note Here'
           value={noteValue}
           onChangeText={setNoteValue}
-          mode="flat"
+          mode='flat'
           multiline={true}
           style={styles.text}
           scrollEnabled={true}
-          returnKeyType="done"
+          returnKeyType='done'
           blurOnSubmit={true}
         />
         <FAB
           style={styles.fab}
           small
-          icon="check"
+          icon='check'
           disabled={noteTitle == '' ? true : false}
           onPress={() => onSaveNote()}
         />
-        <View styles={styles.titleContainer}>
-          <Text styles={styles.title}>Add Notes modal screen</Text>
-        </View>
       </View>
     </>
   )
@@ -85,3 +87,4 @@ const styles = StyleSheet.create({
     bottom: 0
   }
 })
+

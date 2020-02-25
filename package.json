@@ -8,8 +8,11 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@apollo/client": "^3.0.0-beta.36",
     "@react-native-community/masked-view": "^0.1.6",
+    "apollo-client": "^2.6.8",
     "expo": "~36.0.0",
+    "graphql": "^14.6.0",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
